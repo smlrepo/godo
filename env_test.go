@@ -107,13 +107,12 @@ func TestInheritedRunEnv(t *testing.T) {
 
 	var output string
 
-	if isWindows {	
-		output, _ = RunOutput(`FOO=bar BAH=baz cmd /C "echo %TEST_RUN_ENV% %FOO%"`)	
+	if isWindows {
+		output, _ = RunOutput(`FOO=bar BAH=baz cmd /C "echo %TEST_RUN_ENV% %FOO%"`)
 	} else {
-		output, _ = RunOutput(`FOO=bar BAH=baz bash -c "echo -n $TEST_RUN_ENV $FOO"`)	
+		output, _ = RunOutput(`FOO=bar BAH=baz bash -c "echo -n $TEST_RUN_ENV $FOO"`)
 	}
 
-	
 	if str.Clean(output) != "fubar bar" {
 		t.Error("Environment was not inherited! Got", fmt.Sprintf("%q", output))
 	}

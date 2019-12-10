@@ -240,5 +240,9 @@ func Prompt(prompt string) string {
 // PromptPassword prompts user for password input.
 func PromptPassword(prompt string) string {
 	fmt.Printf(prompt)
-	return string(gopass.GetPasswd())
+	pwd, err := gopass.GetPasswd()
+	if err != nil {
+		panic(err)
+	}
+	return string(pwd)
 }
